@@ -33,7 +33,7 @@ const CountDown = ({ targetTime }) => {
   };
 
   const setRemaing = () => {
-    setSeconds(60);
+    setSeconds(59);
     setMinutes((prev) => prev - 1);
   };
 
@@ -46,7 +46,7 @@ const CountDown = ({ targetTime }) => {
             <CardDigital
               digit={n}
               current={minutes + 1}
-              initial={targetTime + 1}
+              initial={targetTime - 1}
             />
           ))}
       </ul>
@@ -54,7 +54,7 @@ const CountDown = ({ targetTime }) => {
         {[...Array(60).keys()]
           .sort((a, b) => (b === 0 ? 1 : a < b ? 1 : -1))
           .map((n) => (
-            <CardDigital digit={n} current={seconds + 1} initial={60} />
+            <CardDigital digit={n} current={seconds + 1} initial={59} />
           ))}
       </ul>
     </main>

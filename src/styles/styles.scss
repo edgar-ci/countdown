@@ -5,7 +5,7 @@ $dark: rgba(0, 0, 0, 1);
 $gradient1: linear-gradient(to bottom, $dark-400 0%, $dark-100 100%);
 $gradient2: linear-gradient(to bottom, $dark-100 0%, $dark-400 100%);
 
-$animation-time: 300ms;
+$animation-time: 500ms;
 
 @import "./reset";
 @import "./keyframes";
