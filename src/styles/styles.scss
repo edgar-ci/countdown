@@ -1,0 +1,13 @@
+$dark-100: rgba(0, 0, 0, 0.1);
+$dark-400: rgba(0, 0, 0, 0.8);
+$dark: rgba(0, 0, 0, 1);
+
+$gradient1: linear-gradient(to bottom, $dark-400 0%, $dark-100 100%);
+$gradient2: linear-gradient(to bottom, $dark-100 0%, $dark-400 100%);
+
+$animation-time: 300ms;
+
+@import "./reset";
+@import "./keyframes";
+@import "./base";
+@import "./change";

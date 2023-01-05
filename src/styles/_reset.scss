@@ -1,0 +1,21 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+ul {
+  list-style: none;
+}
+
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  background: $dark;
+  font: normal 11px "Helvetica Neue", Helvetica, sans-serif;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.3);
+  user-select: none;
+}

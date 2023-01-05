@@ -1,5 +1,4 @@
-import CountDown from "./CountDown";
-import "./App.scss";
+import CountDown from "./components/CountDown";
 
 function App() {
   return <CountDown targetTime={25} />;

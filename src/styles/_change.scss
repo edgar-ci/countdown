@@ -1,0 +1,40 @@
+.effects .current {
+  animation: cover $animation-time $animation-time linear both;
+  z-index: 2;
+
+  .header {
+    &::before {
+      background: $gradient2;
+      animation: hide $animation-time linear both;
+    }
+  }
+
+  .footer {
+    z-index: 2;
+    animation: cover-end $animation-time $animation-time linear both;
+
+    &::before {
+      background: $gradient1;
+      animation: hide $animation-time 300ms linear both;
+    }
+  }
+}
+
+.effects .previous {
+  z-index: 3;
+  .header {
+    z-index: 2;
+    animation: cover-start $animation-time linear both;
+    &::before {
+      background: $gradient2;
+      animation: show $animation-time 300ms linear both;
+    }
+  }
+
+  .footer {
+    &::before {
+      background: $gradient1;
+      animation: show $animation-time linear both;
+    }
+  }
+}
