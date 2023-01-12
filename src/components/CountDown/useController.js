@@ -8,6 +8,20 @@ const useController = (targetTime, breakTime) => {
   let timer = useRef(null);
 
   useEffect(() => {
+    // (A1) GO INTO FULL SCREEN FIRST
+    let de = document.documentElement;
+    if (de.requestFullscreen) {
+      de.requestFullscreen();
+    } else if (de.mozRequestFullScreen) {
+      de.mozRequestFullScreen();
+    } else if (de.webkitRequestFullscreen) {
+      de.webkitRequestFullscreen();
+    } else if (de.msRequestFullscreen) {
+      de.msRequestFullscreen();
+    }
+
+    // (A2) THEN LOCK ORIENTATION
+    window.screen.orientation.lock("landscape");
     setTimer();
     return () => {
       clearInterval(timer.current);
