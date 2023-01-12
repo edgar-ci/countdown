@@ -14,10 +14,9 @@ const separeValues = (value) => {
 };
 
 const Card = ({ digito }) => {
-  const styles = { transform: `translateY(-${(9 - digito) * 300}px)` };
   return (
     <div className="card">
-      <div className="inner" style={styles}>
+      <div className={`inner ejeY-${digito}`}>
         {[...Array(10).keys()]
           .sort((a, b) => (a < b ? 1 : -1))
           .map((n) => (
@@ -39,10 +38,12 @@ const CountDown = ({ targetTime, breakTime }) => {
   return (
     <>
       <main className={isBrake ? "break" : ""}>
-        <Card digito={separeValues(minutes).ten} />
-        <Card digito={separeValues(minutes).unit} />
-        <Card digito={seconds === 60 ? "0" : separeValues(seconds).ten} />
-        <Card digito={separeValues(seconds).unit} />
+        <div className="wrap">
+          <Card digito={separeValues(minutes).ten} />
+          <Card digito={separeValues(minutes).unit} />
+          <Card digito={seconds === 60 ? "0" : separeValues(seconds).ten} />
+          <Card digito={separeValues(seconds).unit} />
+        </div>
       </main>
     </>
   );

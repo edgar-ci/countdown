@@ -1,12 +1,21 @@
 $bg: #1e1f23;
 $color: #D9C8B4;
 $height: 300px;
+$ejes: 1,2,3,4,5,6,7,8,9;
+
 body {
   font-family: "Orbitron", sans-serif;
 }
 
 main {
   background: $bg;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.wrap {
   display: flex;
   justify-content: center;
   height: 100vh;
@@ -105,4 +114,38 @@ main {
 
 .inner {
   transition: all 600ms ease;
+}
+
+@each $eje in $ejes {
+  .ejeY-#{$eje} {
+    transform: translateY(-#{(9-$eje) * 300}px);
+  }
+}
+
+.ejeY-0 {
+  transform: translateY(-2700px);
+}
+
+@media (orientation: portrait) {
+  .wrap{
+    flex-wrap: wrap;
+    max-height: 400px;
+    width: 100%;
+  }
+  .card {
+    width: 40%;
+    height: 140px;
+  }
+  .element{
+    height: 140px;
+    font-size: 80px;
+  }
+  @each $eje in $ejes {
+    .ejeY-#{$eje} {
+      transform: translateY(-#{(9-$eje) * 140}px);
+    }
+    .ejeY-0 {
+      transform: translateY(-1260px);
+    }
+  }
 }
