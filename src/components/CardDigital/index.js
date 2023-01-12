@@ -1,17 +1,9 @@
 import React from "react";
 
-const CardDigital = ({ digit, current, initial }) => {
+const CardDigital = ({ digit }) => {
   const value = digit < 10 ? `0${digit}` : digit;
   return (
-    <li
-      className={`${
-        digit === current || (digit === 0 && current === initial)
-          ? "previous"
-          : digit === current - 1
-          ? "current"
-          : ""
-      }`}
-    >
+    <li>
       <div className="header">
         <span className="digit">{value}</span>
       </div>

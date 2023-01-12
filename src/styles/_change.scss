@@ -1,4 +1,4 @@
-.effects .current {
+.effects li:nth-last-child(2) {
   animation: cover $animation-time $animation-time linear both;
   z-index: 2;
 
@@ -20,7 +20,7 @@
   }
 }
 
-.effects .previous {
+.effects li:last-child {
   z-index: 3;
   .header {
     z-index: 2;

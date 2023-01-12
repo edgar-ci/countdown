@@ -1,63 +1,50 @@
-import React, { useState, useEffect, useRef } from "react";
+import React from "react";
 import CardDigital from "../CardDigital";
+import useController from "./useController";
 
-const CountDown = ({ targetTime }) => {
-  const [seconds, setSeconds] = useState(0);
-  const [minutes, setMinutes] = useState(targetTime);
-  let timer;
-  let container = useRef(null);
+const separeValues = (value) => {
+  let el = value?.toString();
+  let ten = el.length > 1 ? Number(el[0]) : 0;
+  let unit = el.length > 1 ? Number(el[1]) : Number(el[0]);
 
-  useEffect(() => {
-    setMinutes(targetTime);
-    setRemaing();
-    setTimer();
-    return () => {
-      clearInterval(timer);
-    };
-  }, []);
-
-  useEffect(() => {
-    console.log({ seconds, minutes });
-    if (seconds === 0 && minutes !== targetTime) {
-      console.log("dentro", { seconds, minutes });
-      setRemaing();
-    }
-  }, [seconds]);
-
-  const setTimer = () => {
-    timer = setInterval(() => {
-      container.current.classList.remove("effects");
-      setSeconds((prev) => prev - 1);
-      container.current.classList.add("effects");
-    }, 1000);
+  return {
+    ten,
+    unit,
   };
+};
 
-  const setRemaing = () => {
-    setSeconds(59);
-    setMinutes((prev) => prev - 1);
-  };
-
+const Card = ({ digito }) => {
+  const styles = { transform: `translateY(-${(9 - digito) * 300}px)` };
   return (
-    <main ref={container}>
-      <ul class="flip">
-        {[...Array(targetTime + 1).keys()]
+    <div className="card">
+      <div className="inner" style={styles}>
+        {[...Array(10).keys()]
           .sort((a, b) => (a < b ? 1 : -1))
           .map((n) => (
-            <CardDigital
-              digit={n}
-              current={minutes + 1}
-              initial={targetTime - 1}
-            />
+            <span className={` element ${n === digito ? "active" : "preview"}`}>
+              {n}
+            </span>
           ))}
-      </ul>
-      <ul class="flip">
-        {[...Array(60).keys()]
-          .sort((a, b) => (b === 0 ? 1 : a < b ? 1 : -1))
-          .map((n) => (
-            <CardDigital digit={n} current={seconds + 1} initial={59} />
-          ))}
-      </ul>
-    </main>
+      </div>
+    </div>
+  );
+};
+
+const CountDown = ({ targetTime, breakTime }) => {
+  const { seconds, minutes, handlePause, isBrake } = useController(
+    targetTime,
+    breakTime
+  );
+
+  return (
+    <>
+      <main className={isBrake ? "break" : ""}>
+        <Card digito={separeValues(minutes).ten} />
+        <Card digito={separeValues(minutes).unit} />
+        <Card digito={seconds === 60 ? "0" : separeValues(seconds).ten} />
+        <Card digito={separeValues(seconds).unit} />
+      </main>
+    </>
   );
 };
 

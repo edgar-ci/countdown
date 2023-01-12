@@ -1,0 +1,108 @@
+$bg: #1e1f23;
+$color: #D9C8B4;
+$height: 300px;
+body {
+  font-family: "Orbitron", sans-serif;
+}
+
+main {
+  background: $bg;
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+  width: 100%;
+  align-items: center;
+  &.break {
+    background-color: $color;
+    .element {
+      color: #1A98B2;
+    }
+  }
+  &.break .card{
+    background-color: $color;
+    box-shadow: -5px -5px 9px lighten($color, 2%),
+    5px 5px 9px darken($color, 2%), 
+    inset 5px 5px 5px darken($color, 10%),
+    inset -5px 5px 9px lighten($color, 10%);
+    &::after {
+      top: 0;
+      background: linear-gradient(180deg, rgba($color, 0.9), rgba($color, 0.1));
+    }
+    &::before {
+      bottom: 0;
+      background: linear-gradient(0deg, rgba($color, 0.9), rgba($color, 0.1));
+    }
+  }
+}
+
+.card {
+  align-items: center;
+  background-color: $bg;
+  box-shadow: -5px -5px 9px lighten($bg, 2%),
+    5px 5px 9px darken($bg, 2%), 
+    inset 5px 5px 5px darken($bg, 10%),
+    inset -5px 5px 9px lighten($bg, 10%);
+  border-radius: 30px;
+  height: $height;
+  justify-content: center;
+  margin: 10px;
+  width: 25%;
+  overflow: hidden;
+  position: relative;
+  &::after, &::before {
+    position: absolute;
+    width: 100%;
+    content: " ";
+    height: 60px;
+    z-index: 2;
+  }
+  &::after {
+    top: 0;
+    background: linear-gradient(180deg, rgba($bg, 0.9), rgba($bg, 0.1));
+  }
+  &::before {
+    bottom: 0;
+    background: linear-gradient(0deg, rgba($bg, 0.9), rgba($bg, 0.1));
+  }
+
+  &:nth-child(odd) .element{
+    transform: rotateZ(1deg);
+    &.preview{
+      opacity: 0.3;
+      transform: rotateZ(40deg);
+    }
+  }
+  &:nth-child(even) .element{
+    transform: rotateZ(-1deg);
+    &.preview{
+      opacity: 0.3;
+      transform: rotateZ(-40deg);
+    }
+  }
+}
+
+.element {
+  display: flex;
+  align-items: center;
+  font-size: 190px;
+  height: $height;
+  width: 100%;
+  font-weight: bold;
+  justify-content: center;
+  text-align: center;
+  transition: transform 900ms cubic-bezier(0.075, 0.82, 0.165, 1), opacity 900ms cubic-bezier(0.075, 0.82, 0.165, 1);
+  background-color: #565656;
+  color: rgba($color, 0.4);
+  text-shadow: 2px 2px 3px rgba(255,255,255,0.5);
+  background-clip: text;
+  transform: rotateZ(-1deg);
+
+  &.preview{
+    opacity: 0.3;
+    transform: rotateZ(40deg);
+  }
+}
+
+.inner {
+  transition: all 600ms ease;
+}

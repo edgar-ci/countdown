@@ -31,7 +31,7 @@ main {
     font-size: 10em;
     border-radius: 0.125em;
     border: 5px solid #111;
-    &:first-child {
+    &:last-child {
       z-index: 2;
     }
 
